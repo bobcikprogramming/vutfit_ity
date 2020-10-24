@@ -1,5 +1,5 @@
 ##Projekt 1: 8,7/10 bodů
-  0:podtecenie sadzby underfull - vo vseobecnosti nema byt, nepresnost v zadani
+0:podtecenie sadzby underfull - vo vseobecnosti nema byt, nepresnost v zadani
   0.2:pomlcky
   1:prevlnkovane --> 35:ěný řez} pouze pro~doposud neznámé
   0.1:zla uprava - fontfamily pag pre Čím více druhů
