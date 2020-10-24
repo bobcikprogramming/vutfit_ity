@@ -1,0 +1,131 @@
+\documentclass[twocolumn, a4paper, 11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[top=2.5cm, total={18cm,25cm}, left=1.5cm]{geometry}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{times}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\date{}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \thispagestyle{empty}
+        {\Huge
+        \textsc{Fakulta informačních technologií\\[0.4em]
+        Vysoké učení technické v Brně}}
+        
+        \vspace{\stretch{0.382}}
+        
+        {\LARGE Typografie a~publikování -- 2. projekt\\[0.3em]
+        Sazba dokumentů a matematických výrazů}
+        \vspace{\stretch{0.618}}
+    \end{center}
+{\Large 2020 \hfill Pavel Bobčík (xbobci03)}
+\end{titlepage}
+
+\newpage
+
+\setcounter{page}{1}
+\section*{Úvod}
+V této úloze si vyzkoušíme sazbu titulní strany, matematic- kých vzorců, prostředí a dalších textových struktur obvyk- lých pro technicky zaměřené texty (například rovnice (\ref{rovnice2}) nebo Definice \ref{definice2} na straně \pageref{definice2}). Pro vytvoření těchto odkazů používáme příkazy \verb|\label|, \verb|\ref| a \verb|\pageref|.
+
+Na titulní straně je využito sázení nadpisu podle op- tického středu s využitím zlatého řezu. Tento postup byl probírán na přednášce. Dále je použito odřádkování se zadanou relativní velikostí 0.4em a 0.3em.
+
+\section{Matematický text}
+Nejprve se podíváme na sázení matematických symbolů a~výrazů v plynulém textu včetně sazby definic a vět s vy- užitím balíku \texttt{amsthm}. Rovněž použijeme poznámku pod čarou s použitím příkazu \verb|\footnote|. Někdy je vhodné použít konstrukci \verb|${}$| nebo \verb|\mbox{}| která říká, že (matematický) text nemá být zalomen. V následující de- finici je nastavena mezera mezi jednotlivými položkami \verb|\item| na 0.05em.
+
+\newtheorem{definice}{Definice}
+    \begin{definice}
+    \label{definice1}
+    \textnormal{Turingův stroj} (TS) je definován jako šestice tvaru 
+    $M = (Q,\Sigma,\Gamma,\delta,q_0,q_F)$, kde:
+
+    \begin{itemize}
+        \itemsep 0.05em
+        \item $Q$ je konečná množina \textnormal{vnitřních (řídicích) stavů,}
+        \item $\Sigma$ je konečná množina symbolů nazývaná \textnormal{vstupní
+        abeceda, $\Delta \notin  \Sigma$,}
+        \item $\Gamma$ je konečná množina symbolů, $\Sigma \subset \Gamma$, $\Delta \in \Gamma$, 
+        nazývaná \textnormal{pásková abeceda},
+        \item $\delta : (Q \backslash \{q_F\})\times\Gamma\rightarrow Q\times(\Gamma\cup\{L, R\})$, kde $L, R \notin \Gamma$,
+        je parciální \textnormal{přechodová funkce,} a
+        \item $q_0 \in Q$ je \textnormal{počáteční stav} a $q_f \in Q$ je \textnormal{koncový stav.}
+        \end{itemize}
+\end{definice}
+
+Symbol $\Delta$ značí tzv. \emph{blank} (prázdný symbol), který se vyskytuje na místech pásky, která nebyla ještě použita.
+
+\emph{Konfigurace pásky} se skládá z nekonečného řetězce, který reprezentuje obsah pásky a pozice hlavy na tomto řetězci. Jedná se o prvek množiny \mbox{\{$\gamma\Delta^\omega \mid \gamma \in \Gamma^\ast$\} $\times \  \mathbb{N}$}\footnote{Pro libovolnou abecedu $\Sigma$ je $\Sigma^\omega$ množina všech \emph{nekonečných} řetězců nad $\Sigma$, tj. nekonečných posloupností symbolů ze $\Sigma$.}. \emph{Konfiguraci pásky} obvykle zapisujeme jako $\Delta xyz\underline{z}x\Delta$... (podtržení značí pozici hlavy). \emph{Konfigurace stroje} je pak dána stavem řízení a konfigurací pásky. Formálně se jedná o prvek množiny $Q\times\{\gamma\Delta^\omega \mid \gamma \in\Gamma^\ast\}\times\mathbb{N}$.
+
+\subsection {Podsekce obsahující větu a odkaz}
+\begin{definice}
+    \label{definice2}
+    \textnormal{Řetězec $w$ nad abecedou $\Sigma$ je přijat TS} $M$
+    jestliže $M$ při aktivaci z počáteční konfigurace pásky $\underline{\Delta} w\Delta...$ 
+    a počátečního stavu $q_0$ zastaví přechodem do koncového stavu 
+    $q_F$, tj. $(q_0, \Delta w\Delta^\omega, 0) \underset{M}{\overset{*}{\vdash}} (q_F , \gamma, n)$ pro
+    nějaké $\gamma \in \Gamma^\ast$ a $n \in \mathbb{N}$.
+    
+    Množinu $L(M) = \{w \mid w$ je přijat TS $M\} \subseteq \Sigma^\ast$~nazý\-váme \textnormal{jazyk přijímaný TS} $M$.  
+\end{definice}
+
+Nyní si vyzkoušíme sazbu vět a důkazů opět s použitím
+balíku \texttt{amsthm}.
+
+\newtheorem{veta}{Věta}
+\begin{veta}
+    Třída jazyků, které jsou přijímány TS, odpovídá
+    \textnormal{rekurzivně vyčíslitelným jazykům.}
+\end{veta}
+
+\begin{proof}
+    V důkaze vyjdeme z Definice \ref{definice1} a \ref{definice2}.
+\end{proof}
+
+\section{Rovnice}
+Složitější matematické formulace sázíme mimo plynulý text. Lze umístit několik výrazů na jeden řádek, ale pak je třeba tyto vhodně oddělit, například příkazem \verb|\quad|.
+
+$$\sqrt[i]{x^3_i} \quad \text{kde $x_i$ je $i$-té sudé číslo}\quad y_i^{2\cdot y_i}\neq y_i^{y_i^{y_i}}$$
+
+V rovnici (\ref{rovnice1}) jsou využity tři typy závorek s různou explicitně definovanou velikostí.
+
+\begin{eqnarray}
+    \label{rovnice1}
+    x & = & \bigg\{ \Big( \big[a+b\big]\ast c\Big)^d \oplus 1\bigg\}\\
+    \label{rovnice2}
+    y & = & \lim\limits_{x \to \infty} \frac{\textnormal{\fontfamily{cmr}\selectfont{sin}}^2 x + \textnormal{\fontfamily{cmr}\selectfont{cos}}^2 x}{\frac{1}{\log_{10} x}}
+\end{eqnarray}
+
+V této větě vidíme, jak vypadá implicitní vysázení li-
+mity $\lim_{n\rightarrow\infty} f(n)$ v normálním odstavci textu. Podobně je to i s dalšími symboly jako $\sum\nolimits_{i=1}^{n}2^i \text{ či } \bigcap_{A\in\mathcal{B}} A$. V~pří\-padě vzorců $\lim\limits_{n \to \infty}f(n) \text{ a } \sum\limits_{i=1}^{n}2^i$ jsme si vynutili méně úspornou sazbu příkazem \verb|\limits|.
+
+\section{Matice}
+Pro sázení matic se velmi často používá prostředí \texttt{array} a závorky (\verb|\left|, \verb|\right|).
+
+\begin{equation*}
+    \left(
+    \begin{array}{ccc}
+        a+b & \widehat{\xi + \omega} & \hat{\pi} \\
+        \vec{\mathbf{a}} & \overleftrightarrow{AC} & \beta 
+    \end{array}
+    \right) = 1 \Longleftrightarrow \mathbb{Q} = \mathcal{R}
+\end{equation*}
+Prostředí \texttt{array} lze úspěšně využít i jinde.
+
+\begin{equation*}
+    \binom{n}{k} = 
+    \left\{ 
+    \begin{array}{c l}
+        0 & \mbox{pro $k < 0$ nebo $k > n$}\\
+        \frac{n!}{k!(n-k)!} & \mbox{pro $0 \leq k \leq n$}.
+    \end{array} 
+    \right.
+\end{equation*}
+
+\end{document}
+
